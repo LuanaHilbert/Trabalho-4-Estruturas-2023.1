@@ -1,3 +1,10 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Scanner;
+
 public class Grafo {
 
     private int V; //número de vertices
@@ -30,6 +37,38 @@ public class Grafo {
     }
     public int getV(){
         return this.V;
+    }
+
+    private void abrirGrafo() {
+        try (Scanner fileScanner = new Scanner(new File("grafo.txt"))) {
+            V = fileScanner.nextInt();
+            matriz = new int[V][V];
+
+            for (int i = 0; i < V; i++) {
+                for (int j = 0; j < V; j++) {
+                    matriz[i][j] = fileScanner.nextInt();
+                }
+            }
+
+            System.out.println("Grafo aberto com sucesso.");
+        } catch (FileNotFoundException e) {
+            System.out.println("Arquivo grafo.txt não encontrado.");
+        }
+    }
+
+    private void salvarGrafo() {
+        try (PrintWriter writer = new PrintWriter(new FileWriter("grafo.txt"))) {
+            writer.println(V);
+            for (int i = 0; i < V; i++) {
+                for (int j = 0; j < V; j++) {
+                    writer.print(matriz[i][j] + " ");
+                }
+                writer.println();
+            }
+            System.out.println("Grafo salvo com sucesso.");
+        } catch (IOException e) {
+            System.out.println("Erro ao salvar o grafo.");
+        }
     }
         
     @Override

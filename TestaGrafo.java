@@ -35,23 +35,38 @@ public class TestaGrafo {
             switch (choice) {
                 case 1:
                     if (!graphCreated) {
-                        Grafo grafo = new Grafo(entrada);
+                        System.out.print("Digite o número de vértices do grafo: ");
+                        int v = entrada.nextInt();
+                        Grafo grafo = new Grafo(v);
+                        System.out.println("Grafo criado com sucesso.");
                         graphCreated = true;
                     } else {
                         System.out.println("Um grafo já foi criado. Escolha outra opção.");
                     }
                     break;
                 case 2:
-                    if (!graphCreated) {
-                        openGraph();
-                        graphCreated = true;
+                    if (graphCreated) {
+                        grafo.abrirGrafo();
                     } else {
-                        System.out.println("Um grafo já foi criado. Escolha outra opção.");
+                        System.out.println("Não há um grafo criado. Escolha outra opção.");
                     }
                     break;
                 case 3:
                     if (graphCreated) {
-                        addEdge(entrada);
+                        System.out.println("Digite o primeiro vertice:");
+                        int v1 = entrada.nextInt();
+                        if(v1 >= 0 && v1 < grafo.getV){
+                            System.out.println("Digite o segundo vertice");
+                            int v2 = entrada.nextInt();
+                            if(v2 >= 0 && v2 < grafo.getV){
+                                grafo.adicionaAresta(v1, v2);
+                                System.out.println("Aresta adicionada com sucesso!");
+                            }
+                            else
+                                System.out.println("Vertice invalido.");
+                        }
+                        else
+                            System.out.println("Vertice invalido.");
                     } else {
                         System.out.println("Crie um grafo primeiro.");
                     }
@@ -92,7 +107,7 @@ public class TestaGrafo {
                     }
                     break;
                 case 9:
-                    saveGraph();
+                    grafo.salvarGrafo();
                     break;
                 default:
                     System.out.println("Opção inválida. Escolha novamente.");

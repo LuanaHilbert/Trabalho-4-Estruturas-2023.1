@@ -87,32 +87,8 @@ public class ListaDuplamenteEncadeada {
         }
         System.out.println();
     }
-    Integer removeNodo(int n){
-        Nodo temp = inicio;
-        while (temp != null && temp.dado != n){
-            temp = temp.proximo;
-        }
-        
-        if (temp == null) return null;
-       
-        if (temp == inicio) { //está no inicio
-            inicio = inicio.proximo;
-        }
-        else { // não está no inicio
-            temp.anterior.proximo = temp.proximo;
-        }
-        
-        if (temp == ultimo) { //está no final
-            ultimo = ultimo.anterior;
-        }
-        else {
-            temp.proximo.anterior = temp.anterior;
-        }
-        
-        return temp.dado;
-    }
     
-   Integer removeNodo02(int n){
+    Integer removeNodo(int n){
         Nodo temp = inicio;
         while (temp != null && temp.dado != n){
             temp = temp.proximo;
