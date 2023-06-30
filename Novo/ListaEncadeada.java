@@ -20,6 +20,10 @@ public class ListaEncadeada {
         }
     }
 
+    public No getPrimeiro(){
+        return this.primeiro;
+    }
+
     public void remover(int valor) {
         No atual = primeiro;
         No anterior = null;
